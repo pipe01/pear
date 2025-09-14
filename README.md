@@ -3,6 +3,7 @@
 ***Pe**ek into **ar**chives*
 
 Supported formats:
+* ar
 * tar
 * tar in bzip2
 * tar in gzip

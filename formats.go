@@ -9,7 +9,9 @@ import (
 	"fmt"
 	"io"
 	"iter"
+	"strings"
 
+	"github.com/blakesmith/ar"
 	"github.com/bodgit/sevenzip"
 	"github.com/ulikunitz/xz"
 )
@@ -160,6 +162,33 @@ var formats = []Format{
 
 				for f, err := range decodeTar(gr) {
 					if !yield(f, err) {
+						return
+					}
+				}
+			}
+		},
+	},
+	{
+		Name: "ar",
+		Magic: [][]byte{
+			{'!', '<', 'a', 'r', 'c', 'h', '>', '\n'},
+		},
+		Decode: func(r ReadSeekReadAt, size int64) iter.Seq2[File, error] {
+			arr := ar.NewReader(r)
+
+			return func(yield func(File, error) bool) {
+				for {
+					hdr, err := arr.Next()
+					if err == io.EOF {
+						return
+					}
+					if err != nil {
+						yield(File{}, fmt.Errorf("read ar header: %w", err))
+						return
+					}
+
+					name := strings.TrimSuffix(hdr.Name, "/")
+					if !yield(File{Name: name}, nil) {
 						return
 					}
 				}

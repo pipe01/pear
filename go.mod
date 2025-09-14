@@ -3,6 +3,7 @@ module github.com/pipe01/pear
 go 1.23.0
 
 require (
+	github.com/blakesmith/ar v0.0.0-20190502131153-809d4375e1fb
 	github.com/bodgit/sevenzip v1.6.1
 	github.com/ulikunitz/xz v0.5.12
 )
