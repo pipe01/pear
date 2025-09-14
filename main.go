@@ -10,7 +10,18 @@ import (
 func main() {
 	maxCount := flag.Int("n", 10, "stop after `N` files, or -1 for all")
 	skipCount := flag.Int("s", 0, "skip the first `N` files")
+	showVersion := flag.Bool("version", false, "show version and exit")
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage: %s [options] <archive>\n", os.Args[0])
+		flag.PrintDefaults()
+	}
 	flag.Parse()
+
+	if *showVersion {
+		fmt.Println("pear version 1.0.0")
+		os.Exit(0)
+	}
 
 	if flag.NArg() != 1 {
 		flag.Usage()
