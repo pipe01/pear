@@ -1,4 +1,4 @@
-module github.com/pipe01/peek
+module github.com/pipe01/pear
 
 go 1.23.0
 
