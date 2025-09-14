@@ -10,6 +10,16 @@ Supported formats:
 * zip
 * 7z
 
+## Installation
+
+Download the binary corresponding to your environment from [the latest release](https://github.com/pipe01/pear/releases).
+
+Alternatively, install the [Go](https://go.dev/) toolchain, then run
+
+``` bash
+go install github.com/pipe01/pear@latest
+```
+
 ## Usage
 
 ```
