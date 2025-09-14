@@ -19,7 +19,7 @@ func main() {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Println("pear version 1.0.0")
+		fmt.Println("pear version 1.0.1")
 		os.Exit(0)
 	}
 
