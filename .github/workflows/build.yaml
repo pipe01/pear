@@ -32,7 +32,7 @@ jobs:
           GOOS: ${{ matrix.goos }}
           CGO_ENABLED: "0"
         run: |
-          go build -v -o build/pear
+          go build -ldflags="-s -w" -o build/pear
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
